@@ -56,7 +56,7 @@ public:
 int main()
 {
 	Fruit *pear = Factory::Create("pear");
-	if (pear == NULL)
+	if (pear == nullptr)
 	{
 		cout << "创建产品失败\n";
 	}
