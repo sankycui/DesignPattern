@@ -1,7 +1,7 @@
 /*简单工厂模式*/
 #include <iostream>
 #include <cstring>
-
+#include <memory>
 using namespace std;
 
 class Fruit
@@ -37,15 +37,15 @@ public:
 class Factory
 {
 public:
-	static Fruit* Create(char *name)
+	std::shared_ptr<Fruit> Create(char *name)
 	{
-		Fruit *tmp = NULL;
+		std::shared_ptr<Fruit> tmp;
 		if (strcmp(name, "pear") == 0)
 		{
-			tmp = new Pear();
+			tmp = std::make_shared<Pear>();
 		} else if (strcmp(name, "banana") == 0)
 		{
-			tmp = new Banana();
+			tmp = std::make_shared<Banana>();
 		} 
 
 		return tmp;
@@ -55,13 +55,15 @@ public:
 
 int main()
 {
-	Fruit *pear = Factory::Create("pear");
+	Factory fruitFac;
+
+	std::shared_ptr<Fruit> pear = fruitFac.Create("pear");
 	if (pear == nullptr)
 	{
 		cout << "创建产品失败\n";
 	}
 	pear->getFruit();
-	Fruit *banana = Factory::Create("banana");
+	std::shared_ptr<Fruit> banana = fruitFac.Create("banana");
 	banana->getFruit();
 
     system("pause");
