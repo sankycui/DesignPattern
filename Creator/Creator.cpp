@@ -4,12 +4,6 @@
 #include <memory>
 using namespace std;
 
-
-#include <iostream>
-#include <string>
-
-using namespace std;
-
 class House
 {
 	public:
